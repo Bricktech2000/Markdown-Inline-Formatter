@@ -7,6 +7,7 @@ A markdown-only text editor
 ## Features
 
 - Inline formatting for markdown synatx
+- Awesome-looking scrollbar on dark theme
 - Half of the code yeeted from the internet
 - No `save` or `save as` option
 - Very crappy `undo` and `redo` shortcuts
