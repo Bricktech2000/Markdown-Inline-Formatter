@@ -102,6 +102,9 @@ body {
   color: var(--nonimportant);
 }
 .token.ordered.punctuation {
+  display: inline-block;
+  width: 1.5em;
+  margin-left: 2.1em;
   font-weight: bolder;
   color: var(--nonimportant);
 }
