@@ -12,6 +12,8 @@
   /*https://stackoverflow.com/questions/11289166/chrome-on-android-resizes-font*/
   max-height: 999999999px;
   -webkit-tap-highlight-color: transparent;
+  /*https://stackoverflow.com/questions/6670151/how-can-i-force-browsers-to-print-background-images-in-css*/
+  -webkit-print-color-adjust: exact;
 }
 ::-webkit-scrollbar {
   width: 1em;
@@ -130,7 +132,7 @@ body {
   top: 50%;
   bottom: 0;
   height: 0.1em;
-  width: calc(100vw - 2.5em - 2.5em);
+  width: calc(100vw - 5em - 10em);
   background: var(--nonimportant);
   content: '';
 }
@@ -179,4 +181,23 @@ body {
 .tab {
   display: inline-block;
   width: 2em;
+}
+
+@media print {
+  :root {
+    --text: #444;
+    --important: #000;
+    --nonimportant: #ccc;
+    --bg: #fff;
+  }
+  html {
+    font-size: 0.75rem;
+  }
+  .pre {
+    padding-left: 2.5em;
+    padding-right: 2.5em;
+  }
+  .token.hr {
+    width: calc(100vw - 2.5em - 2.5em);
+  }
 }
