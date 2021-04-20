@@ -158,3 +158,8 @@ body {
   color: var(--important);
   text-decoration: underline;
 }
+
+.tab {
+  display: inline-block;
+  width: 2em;
+}

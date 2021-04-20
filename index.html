@@ -173,6 +173,10 @@ This web site is using `markedjs/marked`.
             )
             .replace(/<\/span>$/, `</a>`);
         }
+        code.innerHTML = code.innerHTML.replace(
+          /\n  /g,
+          '\n<span class="tab">  </span>'
+        );
         localStorage.setItem('code', code.textContent);
         restore();
         return restore;
