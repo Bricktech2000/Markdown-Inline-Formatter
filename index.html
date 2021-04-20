@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markdown Inline Formatting</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+    <script src="./prism-markdown.min.js"></script>
+    <link
+      href="https://rawgit.com/PrismJS/prism/gh-pages/themes/prism.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        outline: none;
+      }
+      .editable {
+        /*https://stackoverflow.com/questions/19038070/html-newline-char-in-div-content-editable*/
+        white-space: pre;
+      }
+    </style>
+  </head>
+  <body>
+    <pre><code class="language-md" contenteditable>
+# title
+* list
+* list
+    </code></pre>
+    <script>
+      function saveCaretPosition(context) {
+        var selection = window.getSelection();
+        var range = selection.getRangeAt(0);
+        range.setStart(context, 0);
+        var len = range.toString().length;
+
+        return function restore() {
+          var pos = getTextNodeAtPosition(context, len);
+          selection.removeAllRanges();
+          var range = new Range();
+          range.setStart(pos.node, pos.position);
+          selection.addRange(range);
+        };
+      }
+
+      function getTextNodeAtPosition(root, index) {
+        const NODE_TYPE = NodeFilter.SHOW_TEXT;
+        var treeWalker = document.createTreeWalker(
+          root,
+          NODE_TYPE,
+          function next(elem) {
+            if (index > elem.textContent.length) {
+              index -= elem.textContent.length;
+              return NodeFilter.FILTER_REJECT;
+            }
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        );
+        var c = treeWalker.nextNode();
+        return {
+          node: c ? c : root,
+          position: index,
+        };
+      }
+
+      var code = document.getElementsByTagName('code')[0];
+      code.addEventListener('input', function () {
+        var restore = saveCaretPosition(this);
+        Prism.highlightElement(this);
+        restore();
+      });
+    </script>
+  </body>
+</html>
