@@ -139,7 +139,8 @@ body {
 
 .token.code {
   font-family: monospace;
-  font-size: 0.9em;
+  font-size: 0.875em;
+  line-height: 1em;
 }
 .token.code .token.punctuation {
   color: var(--nonimportant);
@@ -161,12 +162,21 @@ body {
 .token.table {
   font-family: monospace;
 }
+.token.table {
+  display: inline-block;
+  line-height: 1em;
+}
 .token.table-header {
   font-weight: bolder;
   color: var(--important);
 }
 .token.table .token.punctuation {
   color: var(--nonimportant);
+}
+.token.table-line {
+  text-decoration: line-through;
+  text-decoration-color: var(--nonimportant);
+  text-decoration-thickness: 0.1em;
 }
 
 .token.url {
