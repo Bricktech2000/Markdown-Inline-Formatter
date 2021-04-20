@@ -13,6 +13,20 @@
   max-height: 999999999px;
   -webkit-tap-highlight-color: transparent;
 }
+::-webkit-scrollbar {
+  width: 1em;
+  height: 1em;
+}
+::-webkit-scrollbar-track {
+  background: inherit;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--nonimportant);
+  border-radius: 0.5em;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--nonimportant);
+}
 
 body {
   background: var(--bg);
