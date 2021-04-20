@@ -80,6 +80,9 @@ body {
   content: '•';
   color: var(--nonimportant);
 }
+.token.ordered.punctuation {
+  color: var(--nonimportant);
+}
 
 .token.hr {
   position: relative;

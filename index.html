@@ -141,6 +141,10 @@ This web site is using `markedjs/marked`.
           title.classList.add(
             `header-${(title.textContent.match(/^\#{1,6}/) || [''])[0].length}`
           );
+        for (var bullet of this.querySelectorAll('.token.list.punctuation'))
+          bullet.textContent.match(/^\d+\./)
+            ? bullet.classList.remove('list') || bullet.classList.add('ordered')
+            : null;
 
         restore();
       });
