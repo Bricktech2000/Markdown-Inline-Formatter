@@ -75,6 +75,8 @@ body {
 
 /*https://stackoverflow.com/questions/7896402/how-can-i-replace-text-with-css*/
 .token.list {
+  display: inline-block;
+  width: 1em;
   position: relative;
   color: transparent;
 }
@@ -91,6 +93,8 @@ body {
   bottom: 0;
   right: 0;
   /*https://www.toptal.com/designers/htmlarrows/punctuation/bullet/*/
+  font-size: 2em;
+  line-height: 0.75em;
   content: '•';
   color: var(--nonimportant);
 }
