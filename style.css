@@ -37,11 +37,13 @@ body {
   font-size: 1.25rem;
   cursor: text;
   padding: 2.5em;
-  width: auto;
+  width: 100%;
+  white-space: pre-wrap;
 }
 .code {
   font-family: sans-serif;
   line-height: 1.5em;
+  width: 100%;
 }
 .pre *::selection {
   background: var(--nonimportant);
