@@ -119,3 +119,14 @@ body {
   margin-right: 1em;
   color: var(--nonimportant);
 }
+
+.token.table {
+  font-family: monospace;
+}
+.token.table-header {
+  font-weight: bolder;
+  color: var(--important);
+}
+.token.table .token.punctuation {
+  color: var(--nonimportant);
+}
