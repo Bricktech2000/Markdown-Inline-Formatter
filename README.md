@@ -2,6 +2,8 @@
 
 A markdown-only text editor
 
+![screenshot](./screenshot.png)
+
 ## Features
 
 - Inline formatting for markdown synatx
