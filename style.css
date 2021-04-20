@@ -81,6 +81,7 @@ body {
   color: var(--nonimportant);
 }
 .token.ordered.punctuation {
+  font-weight: bolder;
   color: var(--nonimportant);
 }
 
