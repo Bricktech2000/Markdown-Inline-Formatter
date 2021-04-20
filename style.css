@@ -74,6 +74,9 @@ body {
   font-weight: bolder;
   color: var(--important);
 }
+.token.italic .token.punctuation {
+  color: var(--nonimportant);
+}
 
 /*https://stackoverflow.com/questions/7896402/how-can-i-replace-text-with-css*/
 .token.list {
