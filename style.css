@@ -23,6 +23,7 @@ body {
   font-size: 1.25rem;
   cursor: text;
   padding: 2.5em;
+  width: auto;
 }
 .code {
   font-family: sans-serif;
@@ -35,10 +36,19 @@ body {
 .token.title {
   display: inline-block;
   padding-top: 0.5em;
-  font-size: 1.75em;
 }
 .token.title .token.punctuation {
   color: var(--nonimportant);
+}
+.token.title.header-3,
+.token.title {
+  font-size: 1.5em;
+}
+.token.title.header-2 {
+  font-size: 1.75em;
+}
+.token.title.header-1 {
+  font-size: 2em;
 }
 
 .token.italic {

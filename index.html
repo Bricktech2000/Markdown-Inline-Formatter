@@ -128,12 +128,32 @@ This web site is using `markedjs/marked`.
         };
       }
 
+      //https://stackoverflow.com/questions/1520429/is-there-a-css-selector-for-elements-containing-certain-text
       var code = document.getElementsByTagName('code')[0];
       code.addEventListener('input', function () {
-        var restore = saveCaretPosition(this);
+        var restore = () => {};
+        try {
+          restore = saveCaretPosition(this);
+        } catch (e) {}
+
         Prism.highlightElement(this);
+        for (var title of this.querySelectorAll('.token.title'))
+          title.classList.add(
+            `header-${(title.textContent.match(/^\#{1,6}/) || [''])[0].length}`
+          );
+
         restore();
       });
+
+      //https://stackoverflow.com/questions/35659430/how-do-i-programmatically-trigger-an-input-event-without-jquery
+      window.addEventListener('load', () =>
+        code.dispatchEvent(
+          new Event('input', {
+            bubbles: true,
+            cancelable: true,
+          })
+        )
+      );
     </script>
   </body>
 </html>
