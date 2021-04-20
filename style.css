@@ -145,3 +145,12 @@ body {
 .token.table .token.punctuation {
   color: var(--nonimportant);
 }
+
+.token.url {
+  color: var(--nonimportant);
+}
+
+.token.url > .token.content {
+  color: var(--important);
+  text-decoration: underline;
+}

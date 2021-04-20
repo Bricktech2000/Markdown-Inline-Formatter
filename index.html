@@ -94,18 +94,22 @@ This web site is using `markedjs/marked`.
     </code></pre>
     <script>
       function saveCaretPosition(context) {
-        var selection = window.getSelection();
-        var range = selection.getRangeAt(0);
-        range.setStart(context, 0);
-        var len = range.toString().length;
+        try {
+          var selection = window.getSelection();
+          var range = selection.getRangeAt(0);
+          range.setStart(context, 0);
+          var len = range.toString().length;
 
-        return function restore() {
-          var pos = getTextNodeAtPosition(context, len);
-          selection.removeAllRanges();
-          var range = new Range();
-          range.setStart(pos.node, pos.position);
-          selection.addRange(range);
-        };
+          return function restore() {
+            var pos = getTextNodeAtPosition(context, len);
+            selection.removeAllRanges();
+            var range = new Range();
+            range.setStart(pos.node, pos.position);
+            selection.addRange(range);
+          };
+        } catch (e) {
+          return () => {};
+        }
       }
 
       function getTextNodeAtPosition(root, index) {
@@ -130,35 +134,75 @@ This web site is using `markedjs/marked`.
 
       //https://stackoverflow.com/questions/1520429/is-there-a-css-selector-for-elements-containing-certain-text
       var code = document.getElementsByTagName('code')[0];
-      code.addEventListener('input', function () {
-        var restore = () => {};
-        try {
-          restore = saveCaretPosition(this);
-        } catch (e) {}
+      var lastCodeTextContent = '';
+      code.addEventListener('input', (e) => {
+        if (lastCodeTextContent == code.textContent) return;
+        lastCodeTextContent = code.textContent;
+        var restore = highlightCode();
 
-        Prism.highlightElement(this);
-        for (var title of this.querySelectorAll('.token.title'))
+        if (!e.data || e.data.match(/[ \n\t]/)) {
+          console.log('asdf');
+          keyHistory[++keyHistoryIndex] = code.textContent;
+          carretHistory[keyHistoryIndex] = restore;
+          keyHistory = keyHistory.slice(0, keyHistoryIndex + 1);
+        }
+      });
+
+      var highlightCode = () => {
+        var restore = saveCaretPosition(code);
+        Prism.highlightElement(code);
+        for (var title of code.querySelectorAll('.token.title'))
           title.classList.add(
             `header-${(title.textContent.match(/^\#{1,6}/) || [''])[0].length}`
           );
-        for (var bullet of this.querySelectorAll('.token.list.punctuation'))
+        for (var bullet of code.querySelectorAll('.token.list.punctuation'))
           bullet.textContent.match(/^\d+\./)
             ? bullet.classList.remove('list') || bullet.classList.add('ordered')
             : null;
+        //https://stackoverflow.com/questions/15086677/replace-specific-tag-name-javascript
+        //https://stackoverflow.com/questions/3680876/using-queryselectorall-to-retrieve-direct-children
+        //https://stackoverflow.com/questions/3261581/how-to-represent-a-fix-number-of-repeats-in-regular-expression/3261632
+        for (var link of code.querySelectorAll(':scope > .token.url')) {
+          var content = link.querySelector('.token.content');
+          content.outerHTML = content.outerHTML
+            .replace(
+              /^<span/,
+              `<a contenteditable="false" href="${
+                link.querySelector('.token.url').textContent
+              }"`
+            )
+            .replace(/<\/span>$/, `</a>`);
+        }
         localStorage.setItem('code', code.textContent);
-
         restore();
+        return restore;
+      };
+
+      //https://stackoverflow.com/questions/16006583/capturing-ctrlz-key-combination-in-javascript
+      //https://stackoverflow.com/questions/11409895/whats-the-most-elegant-way-to-cap-a-number-to-a-segment
+      var keyHistory = [];
+      var carretHistory = [];
+      var keyHistoryIndex = -1;
+      code.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key == 'z') keyHistoryIndex--;
+        else if (e.ctrlKey && ((e.shiftKey && e.key == 'z') || e.key == 'y'))
+          keyHistoryIndex++;
+        else return;
+
+        keyHistoryIndex = Math.min(
+          keyHistory.length - 1,
+          Math.max(0, keyHistoryIndex)
+        );
+        code.textContent = keyHistory[keyHistoryIndex];
+        lastCodeTextContent = code.textContent;
+        highlightCode();
+        carretHistory[keyHistoryIndex]();
       });
 
       code.textContent = localStorage.getItem('code') || code.textContent;
       //https://stackoverflow.com/questions/35659430/how-do-i-programmatically-trigger-an-input-event-without-jquery
       window.addEventListener('load', () =>
-        code.dispatchEvent(
-          new Event('input', {
-            bubbles: true,
-            cancelable: true,
-          })
-        )
+        code.dispatchEvent(new Event('input'))
       );
     </script>
   </body>
