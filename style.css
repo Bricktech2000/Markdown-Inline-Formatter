@@ -37,6 +37,8 @@ body {
   font-size: 1.25rem;
   cursor: text;
   padding: 2.5em;
+  padding-right: 15em;
+  padding-left: 5em;
   width: 100%;
   white-space: pre-wrap;
 }
