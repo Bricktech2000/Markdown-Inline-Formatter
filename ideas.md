@@ -1,4 +1,4 @@
-# Markdown Inline Formatting
+# Markdown Inline Formatter
 
 - format markdown files inline
 - datsit

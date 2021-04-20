@@ -1,4 +1,4 @@
-# Markdown Inline Formatting
+# Markdown Inline Formatter
 
 A markdown-only text editor
 
@@ -15,7 +15,7 @@ A markdown-only text editor
 
 ## Usage
 
-1. Open up `Markdown-Inline-Formatting/index.html` in a web browser
+1. Open up `Markdown-Inline-Formatter/index.html` in a web browser
 2. Edit the provided template to see live syntax highlighting
 
 ## Feature Requests
