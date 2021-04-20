@@ -145,10 +145,12 @@ This web site is using `markedjs/marked`.
           bullet.textContent.match(/^\d+\./)
             ? bullet.classList.remove('list') || bullet.classList.add('ordered')
             : null;
+        localStorage.setItem('code', code.textContent);
 
         restore();
       });
 
+      code.textContent = localStorage.getItem('code') || code.textContent;
       //https://stackoverflow.com/questions/35659430/how-do-i-programmatically-trigger-an-input-event-without-jquery
       window.addEventListener('load', () =>
         code.dispatchEvent(
