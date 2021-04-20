@@ -1,0 +1,108 @@
+/*https://www.w3schools.com/css/css3_variables.asp*/
+:root {
+  --text: #ccc;
+  --important: #fff;
+  --nonimportant: #333;
+  --bg: #111;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /*https://stackoverflow.com/questions/11289166/chrome-on-android-resizes-font*/
+  max-height: 999999999px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--bg);
+}
+.pre {
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1.25rem;
+  cursor: text;
+  padding: 2.5em;
+}
+.code {
+  font-family: sans-serif;
+  line-height: 1.5em;
+}
+.pre *::selection {
+  background: var(--nonimportant);
+}
+
+.token.title {
+  display: inline-block;
+  padding-top: 0.5em;
+  font-size: 1.75em;
+}
+.token.title .token.punctuation {
+  color: var(--nonimportant);
+}
+
+.token.italic {
+  font-style: italic;
+}
+.token.bold {
+  font-weight: bolder;
+  color: var(--important);
+}
+
+/*https://stackoverflow.com/questions/7896402/how-can-i-replace-text-with-css*/
+.token.list {
+  position: relative;
+  color: transparent;
+}
+.token.list::after {
+  /*display: inline-block;
+  font-size: 1.5em;
+  line-height: 1em;
+  transform: translateY(25%);
+  color: var(--nonimportant);*/
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /*https://www.toptal.com/designers/htmlarrows/punctuation/bullet/*/
+  content: '•';
+  color: var(--nonimportant);
+}
+
+.token.hr {
+  position: relative;
+  color: var(--nonimportant);
+}
+.token.hr::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  bottom: 0;
+  height: 0.1em;
+  width: calc(100vw - 2.5em - 2.5em);
+  background: var(--nonimportant);
+  content: '';
+}
+
+.token.code {
+  font-family: monospace;
+  font-size: 0.9em;
+}
+.token.code .token.punctuation {
+  color: var(--nonimportant);
+}
+.token.code-block {
+  display: inline-block;
+  padding-left: 1em;
+}
+
+.token.blockquote {
+  display: inline-block;
+  width: 2.5em;
+  padding-right: 0.5em;
+  border-right: 0.15em solid var(--text);
+  margin-right: 1em;
+  color: var(--nonimportant);
+}
