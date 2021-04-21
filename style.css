@@ -132,6 +132,9 @@ body {
   font-weight: bolder;
   color: var(--nonimportant);
 }
+.token.checkbox {
+  font-family: monospace;
+}
 
 .token.hr {
   position: relative;

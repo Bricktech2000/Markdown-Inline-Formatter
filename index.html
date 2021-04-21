@@ -64,9 +64,9 @@ _You **can** combine them_
   1. Item 3a
   2. Item 3b
 
-[ ] Item 1
+[X] Item 1
 [ ] Item 2
-[X] Item 3
+[ ] Item 3
 
 ## Links
 
@@ -186,6 +186,20 @@ This is some `inline_code()`
           /\n((  )+)/g,
           (a, b) => '\n' + '<span class="tab">  </span>'.repeat(b.length / 2)
         );
+        code.innerHTML = code.innerHTML.replace(
+          /\[([X ])\]/g,
+          (a, b) =>
+            `<span class="token checkbox"><input type="checkbox" ${
+              b == ' ' ? '' : 'checked'
+            }>[${b}]</span>`
+        );
+        for (var checkbox of code.querySelectorAll('input[type="checkbox"]')) {
+          checkbox.addEventListener('click', function () {
+            this.parentNode.lastChild.textContent = `[${
+              !this.checked ? ' ' : 'X'
+            }]`;
+          });
+        }
         localStorage.setItem('code', code.textContent);
         restore();
         return restore;
