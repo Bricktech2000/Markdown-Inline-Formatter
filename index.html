@@ -25,34 +25,38 @@
   </head>
   <body>
     <pre class="pre"><code class="code language-md" contenteditable>
-# Markdown syntax guide
+# Markdown Inline Formatter
 
 ## Headers
 
-# This is a Heading h1
-## This is a Heading h2 
-###### This is a Heading h6
+# Heading h1
+## Heading h2
+### Heading h3
+
+## Seperation
+
+---
+horizontal rule
+
+term
+: definition
 
 ## Emphasis
 
-*This text will be italic*  
-_This will also be italic_
+_This text will be italic_
 
-**This text will be bold**  
-__This will also be bold__
+**This text will be bold**
+
+~This text will be strikethrough~
 
 _You **can** combine them_
 
 ## Lists
 
-### Unordered
-
 * Item 1
 * Item 2
-* Item 2a
-* Item 2b
-
-### Ordered
+  * Item 2a
+  * Item 2b
 
 1. Item 1
 2. Item 2
@@ -60,19 +64,21 @@ _You **can** combine them_
   1. Item 3a
   2. Item 3b
 
-## Images
-
-![This is a alt text.](/image/sample.png "This is a sample image.")
+[ ] Item 1
+[ ] Item 2
+[X] Item 3
 
 ## Links
 
-You may be using [Markdown Live Preview](https://markdownlivepreview.com/).
+This page uses [Markdown Inline Formatter](https://github.com/Bricktech2000/Markdown-Inline-Formatter).
 
 ## Blockquotes
 
-> Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.
+> Markdown is a lightweight markup language with plain-text-formatting syntax,
+> created in 2004 by John Gruber with Aaron Swartz.
 >
->> Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.
+> Markdown is often used to format readme files, for writing messages in online
+> discussion forums, and to create rich text using a plain text editor.
 
 ## Tables
 
@@ -82,16 +88,18 @@ You may be using [Markdown Live Preview](https://markdownlivepreview.com/).
 | left bar      | right bar     |
 | left baz      | right baz     |
 
-## Blocks of code
+
+## Code
 
 ```
-let message = 'Hello world';
+let message = 'Code Block';
 alert(message);
 ```
 
-## Inline code
+This is some `inline_code()`
 
-This web site is using `markedjs/marked`.
+
+
     </code></pre>
     <script>
       function saveCaretPosition(context) {
