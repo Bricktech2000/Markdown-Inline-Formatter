@@ -84,15 +84,15 @@ body {
   text-decoration-color: var(--important);
   text-decoration-thickness: 0.1em;
 }
-.token.italic .token.punctuation,
-.token.strike .token.punctuation {
+.token.italic > .token.punctuation,
+.token.strike > .token.punctuation {
   display: inline-block;
   width: 0.4em;
   overflow-x: hidden;
   vertical-align: bottom;
   color: var(--nonimportant);
 }
-.token.bold .token.punctuation {
+.token.bold > .token.punctuation {
   display: inline-block;
   font-size: 0.85em;
   vertical-align: top;
