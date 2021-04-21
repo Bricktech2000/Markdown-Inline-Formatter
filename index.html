@@ -175,8 +175,8 @@ This web site is using `markedjs/marked`.
             .replace(/<\/span>$/, `</a>`);
         }
         code.innerHTML = code.innerHTML.replace(
-          /\n  /g,
-          '\n<span class="tab">  </span>'
+          /\n((  )+)/g,
+          (a, b) => '\n' + '<span class="tab">  </span>'.repeat(b.length / 2)
         );
         localStorage.setItem('code', code.textContent);
         restore();
