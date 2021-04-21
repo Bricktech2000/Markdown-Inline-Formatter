@@ -43,6 +43,7 @@ body {
   padding-left: 5em;
   width: 100%;
   white-space: pre-wrap;
+  caret-color: var(--important);
 }
 .code {
   font-family: sans-serif;
