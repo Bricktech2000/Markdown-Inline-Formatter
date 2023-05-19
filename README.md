@@ -1,6 +1,6 @@
 # Markdown Inline Formatter
 
-A markdown-only text editor
+_A markdown-only text editor_
 
 ![screenshot](./screenshot.png)
 
